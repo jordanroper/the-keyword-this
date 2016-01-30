@@ -25,8 +25,17 @@
 
     //Code Here
 
+var user = {
+  username: "Jordan",
+  email: "jordanroper@gmail.com",
+  getUsername: function(){
+    return this.username;
+  }
+};
+
 //Now, invoke the getUsername method and verify you got the username of the object and not anything else.
 
+console.log(user.getUsername());
 
 //Next Problem
 
@@ -34,6 +43,17 @@
 // Write the function definitions which will make the following function invocations function properly.
 
   //Function Invocations Here
+
+var Car = function(make, model, year){
+  this.make = make;
+  this.model = model;
+  this.year = year;
+  this.moveCar = function() {
+    this.moveCar = 0;
+    this.moveCar += 10;
+    return this.moveCar;
+  }
+}
 
 var prius = new Car('Toyota', 'Prius', 2011);
 var mustang = new Car('Ford', 'Mustang', 2013);
@@ -55,7 +75,8 @@ var getYear = function(){
 
 //Note(no tests)
   //Code Here
-
+  console.log(getYear.call(prius));
+  console.log(getYear.call(mustang));
 
 //New Problem
 
@@ -71,14 +92,18 @@ var getMyUsername = function(){
   console.log(this.username);
 };
 
-setTimeout(getMyUsername, 5000);
+setTimeout(this.getMyUsername, 5000);
 
 //Above you're given an object, a function, and a setTimeout invocation. After 5 seconds, what will the getUsername function return?
 //Note(no tests)
   //Answer Here
+undefined
 
 //In the example above, what is the 'this keyword' bound to when getUsername runs?
 
   //Answer Here
+global
+
 
 //Fix the setTimeout invocation so that the user object will be the focal object when getUsername is ran.
+setTimeout(getMyUsername.call(myUser), 5000);
